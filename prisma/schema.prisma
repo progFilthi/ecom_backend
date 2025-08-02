@@ -34,10 +34,10 @@ model Product {
   sellerId String
   name String
   price Float
-  description String?
+  description String
   imageUrl String
-  category String
-  seller Seller @relation(fields: [sellerId], references: [id])
+  category String[]
+  seller Seller @relation(fields: [sellerId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
