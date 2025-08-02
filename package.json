@@ -8,7 +8,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "bun --start src/index.ts",
-    "dev": "bun --dev src/index.ts"
+    "dev": "bun --hot src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
