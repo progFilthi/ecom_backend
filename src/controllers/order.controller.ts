@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 const OrderController = {
-  getOrders: async (req: Request, res: Response, next:NextFunction) => {
+  getOrders: async (req: Request, res: Response, next: NextFunction) => {
     try {
       res.send("This is the GET Orders Route");
     } catch (error) {
