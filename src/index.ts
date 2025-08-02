@@ -1,6 +1,6 @@
-import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
 
 dotenv.config();
 
@@ -18,8 +18,8 @@ app.get("/", (_, res) => {
 import orderRoutes from "../src/routes/order.route";
 import productRoutes from "../src/routes/product.route";
 
-app.use("api/v1/orders", orderRoutes);
-app.use("api/v1/products/", productRoutes);
+app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/products", productRoutes);
 
 const port = process.env.PORT;
 app.listen(port, () => {
