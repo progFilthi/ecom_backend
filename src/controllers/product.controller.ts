@@ -50,6 +50,21 @@ const productController = {
         .json({ message: "Internal server error while creating product" });
     }
   },
+  getAllProducts: async (req: Request, res: Response) => {
+    try {
+      const products = await prisma.product.findMany({});
+      if (!products)
+        return res
+          .status(404)
+          .json({ success: false, message: "Products Not Found" });
+      res.status(200).json({ mesage: "All products ", products });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ message: "Internal server error while getting all products" });
+    }
+  },
 };
 
 export default productController;

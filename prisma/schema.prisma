@@ -46,6 +46,7 @@ model User {
   id            String    @id
   name          String
   email         String
+  roles Role @default(buyer)
   emailVerified Boolean
   image         String?
   createdAt     DateTime
@@ -100,4 +101,10 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum Role{
+  seller
+  buyer
+  admin
 }
