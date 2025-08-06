@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
+import type { Request, Response, NextFunction } from "express";
 
 dotenv.config();
 
@@ -30,8 +31,15 @@ app.get("/", (_, res) => {
 import orderRoutes from "../src/routes/order.route";
 import productRoutes from "../src/routes/product.route";
 
+//ecom-api-endpoints
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/products", productRoutes);
+
+//error handling middleware
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(error.stack);
+  res.status(500).json({ message: "Internal server error" });
+});
 
 const port = process.env.PORT;
 app.listen(port, () => {

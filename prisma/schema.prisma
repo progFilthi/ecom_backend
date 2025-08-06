@@ -21,23 +21,15 @@ datasource db {
 
 //start with listing products then just add on later
 
-model Seller {
-  id        String    @id @default(cuid())
-  firstName String    @map("first_name")
-  LastName  String    @map("last_name")
-  email     String    @unique
-  products  Product[]
-}
-
 model Product {
   id          String   @id @default(cuid())
-  sellerId    String
+  userId    String
   name        String
   price       Float
   description String
   imageUrl    String
   category    String[]
-  seller      Seller   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -46,6 +38,7 @@ model User {
   id            String    @id
   name          String
   email         String
+  products Product[]
   roles Role @default(buyer)
   emailVerified Boolean
   image         String?
